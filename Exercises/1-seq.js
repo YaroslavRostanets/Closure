@@ -1,10 +1,7 @@
 'use strict';
 
-const seq = f => {
-  const fs = [f];
-  return res = arg => typeof arg === 'number' ?
-    fs.reduceRight((ac, f) => ac = f(ac), arg) :
-    fs.push(arg), res;
+const seq = f => g => {
+  return typeof g === 'number' ? f(g) : seq(x => f(g(x)))
 };
 
 module.exports = { seq };
