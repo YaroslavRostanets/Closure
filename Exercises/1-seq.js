@@ -1,16 +1,10 @@
 'use strict';
 
 const seq = f => {
-  const fns = [f];
-  const res = fnOrNum => {
-    if (typeof fnOrNum === 'number') {
-      return fns.reduceRight((acc, f) => acc = f(acc), fnOrNum)
-    } else {
-      fns.push(fnOrNum);
-      return res;
-    }
-  };
-  return res;
+  const fs = [f];
+  return res = arg => typeof arg === 'number' ?
+    fs.reduceRight((ac, f) => ac = f(ac), arg) :
+    fs.push(arg), res;
 };
 
 module.exports = { seq };
